@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "716500901593",
+    "project_id": "acm-apps-59085",
+    "storage_bucket": "acm-apps-59085.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716500901593:android:7ad1ca077c53367a5a28c8",
+        "android_client_info": {
+          "package_name": "com.example.login_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvJx6haAbOwY_ArSAZec4EPurfoV3cWXs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
