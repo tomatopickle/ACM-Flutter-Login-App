@@ -69,13 +69,13 @@ class MyApp extends StatelessWidget {
 //     );
     return ResponsiveSizer(builder: (context, orientation, screenType) {
       return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Login App',
         theme: light,
         // The Mandy red, dark theme.
         darkTheme: dark,
         routes: {
           '/loggedInPage': (context) => const LoggedInPage(),
-          '/': (context) => const MyHomePage(title: 'Flutter Demo Home Page'),
+          '/': (context) => const MyHomePage(),
           '/loginPage': (context) => const LoginPage(),
           '/passwordResetPage': (context) => const PasswordResetPage(),
           '/signUpPage': (context) => const SignUpPage(),
@@ -86,9 +86,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
