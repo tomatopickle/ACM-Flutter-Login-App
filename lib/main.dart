@@ -1,4 +1,3 @@
-import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -448,91 +447,94 @@ class _PasswordResetPageState extends State<PasswordResetPage> {
           title: Text("Password Reset"),
         ),
         body: Padding(
-          padding: const EdgeInsets.all(35.0),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                      child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("Enter email:")),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Form(
-                      key: _formKey,
-                      child: TextFormField(
-                        controller: EmailController,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                            label: Text("Email"),
-                            filled: true,
-                            border: OutlineInputBorder()),
-                        validator: (value) {
-                          RegExp emailRegex = RegExp(
-                              r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
-                          if (value == null || value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          if (!emailRegex.hasMatch(value)) {
-                            return "Invalid email address";
-                          }
-
-                          return null;
-                        },
+          padding: EdgeInsets.symmetric(horizontal:MediaQuery.of(context).size.width > 900 ? (35.w) : 45),
+          child: Padding(
+            padding: const EdgeInsets.all(35.0),
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                        child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text("Enter email:")),
                       ),
-                    ),
-                    SizedBox(
-                      height: 15,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 3.0),
-                      child: Opacity(
-                          opacity: .7,
-                          child: Text(
-                              "If the email is connected to a user, we will send an email where you can reset the password")),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    FilledButton(
-                        style: FilledButton.styleFrom(
-                          minimumSize: Size.fromHeight(50),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Form(
+                        key: _formKey,
+                        child: TextFormField(
+                          controller: EmailController,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                              label: Text("Email"),
+                              filled: true,
+                              border: OutlineInputBorder()),
+                          validator: (value) {
+                            RegExp emailRegex = RegExp(
+                                r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$');
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            if (!emailRegex.hasMatch(value)) {
+                              return "Invalid email address";
+                            }
+
+                            return null;
+                          },
                         ),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            try {
-                              FirebaseAuth.instance
-                                  .sendPasswordResetEmail(
-                                      email: EmailController.text)
-                                  .then((value) => {
-                                        _showMyDialog(
-                                                "Email Sent",
-                                                "Check your inbox for the reset password mail",
-                                                context)
-                                            .then((value) =>
-                                                Navigator.pushNamed(
-                                                    context, '/'))
-                                      })
-                                  .catchError((e) => _showMyDialog(
-                                      "Invalid Email",
-                                      "This email has not made an account",
-                                      context));
-                            } catch (e) {
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 3.0),
+                        child: Opacity(
+                            opacity: .7,
+                            child: Text(
+                                "If the email is connected to a user, we will send an email where you can reset the password")),
+                      ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      FilledButton(
+                          style: FilledButton.styleFrom(
+                            minimumSize: Size.fromHeight(50),
+                          ),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              try {
+                                FirebaseAuth.instance
+                                    .sendPasswordResetEmail(
+                                        email: EmailController.text)
+                                    .then((value) => {
+                                          _showMyDialog(
+                                                  "Email Sent",
+                                                  "Check your inbox for the reset password mail",
+                                                  context)
+                                              .then((value) =>
+                                                  Navigator.pushNamed(
+                                                      context, '/'))
+                                        })
+                                    .catchError((e) => _showMyDialog(
+                                        "Invalid Email",
+                                        "This email has not made an account",
+                                        context));
+                              } catch (e) {
+                                ;
+                              }
                               ;
                             }
-                            ;
-                          }
-                        },
-                        child: Text("Reset Password"))
-                  ],
-                )
-              ]),
+                          },
+                          child: Text("Reset Password"))
+                    ],
+                  )
+                ]),
+          ),
         ));
   }
 }
