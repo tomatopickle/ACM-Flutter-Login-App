@@ -5,7 +5,7 @@ name: Deploy Android
 on:
   push:
     branches:
-    - Production
+    - main
     
 # on: push    # Default will running for every branch.
     
